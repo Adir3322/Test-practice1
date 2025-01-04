@@ -16,7 +16,7 @@ function collectData() {
 
 function generateHTML(data) {
     const newHTML = `
-    <tr class="data-id="${data.id}">
+    <tr data-id="${data.id}">
                 <td>${data.productName}</td>
                 <td>${data.productPrice}</td>
                 <td>${data.productType}</td>
@@ -86,6 +86,10 @@ function deleteProduct(id) {
     const newProducts = products.filter((product) => product.id !== id)
     localStorage.setItem(`products`, JSON.stringify(newProducts))
 
+    const productRow = document.querySelector(`[data-id='${id}']`);
+    if (productRow) {
+        productRow.remove();
+    }
 }
 
 
