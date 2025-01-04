@@ -16,12 +16,12 @@ function collectData() {
 
 function generateHTML(data) {
     const newHTML = `
-    <tr>
+    <tr class="data-id="${data.id}">
                 <td>${data.productName}</td>
                 <td>${data.productPrice}</td>
                 <td>${data.productType}</td>
                 <td><img src="${data.productLink}" alt="Product Image"></td>
-                <td><button class="deleteButton">Delete</button></td>
+                <td><button class="deleteButton" onclick="deleteProduct(${data.id})">Delete</button></td>
             </tr>`
     return newHTML
 }
@@ -46,13 +46,15 @@ function clearForm() {
 // A function to save a task i gets(taskObject) to the local storage
 function saveProductToLocalStorage(productObject) {
     //Get JSON from local storage
+
     const currentProductsInStorageJSON = localStorage.getItem(`products`)
 
     //Converts JSON to JavaScript object
+
     const currentProductsInStorage = JSON.parse(currentProductsInStorageJSON)
-
+    // Pushes into the arrat
     currentProductsInStorage.push(productObject)
-
+    // converts and sets it in the local storage
     localStorage.setItem(`products`, JSON.stringify(currentProductsInStorage))
 }
 
@@ -78,21 +80,24 @@ function loadProductFromLocalStorage() {
 
 
 
-function deleteProduct() {
+function deleteProduct(id) {
+    // removes product form data base
+    let products = JSON.parse(localStorage.getItem(`products`))
+    const newProducts = products.filter((product) => product.id !== id)
+    localStorage.setItem(`products`, JSON.stringify(newProducts))
+
 }
 
 
-// A function that adds a new task and validates if the time&date are currect
+// A function that adds a new product
 function addProduct(event) {
-    alert(`works`)
     event.preventDefault()
     const data = collectData()
-    console.log(data)
-    // const newHTML = generateHTML(data)
-    // renderHTML(newHTML)
-    // saveProductToLocalStorage(data)
-    // clearForm()
+    const newHTML = generateHTML(data)
+    renderHTML(newHTML)
+    saveProductToLocalStorage(data)
+    clearForm()
 }
 
-// initStorage()
-// loadProductFromLocalStorage()
+initStorage()
+loadProductFromLocalStorage()
