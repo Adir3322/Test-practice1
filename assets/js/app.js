@@ -95,6 +95,7 @@ function deleteProduct(id) {
 
 // A function that adds a new product
 function addProduct(event) {
+    alert(`what`)
     event.preventDefault()
     const data = collectData()
     const newHTML = generateHTML(data)
