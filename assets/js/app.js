@@ -7,26 +7,26 @@ function collectData() {
 
     return {
         id: Date.now(),
-        name,
-        price,
-        type,
-        link,
+        productName,
+        productPrice,
+        productType,
+        productLink,
     }
 }
 
 function generateHTML(data) {
     const newHTML = `
     <tr>
-                <td>${product.name}</td>
-                <td>${product.price.toFixed(2)}</td>
-                <td>${product.category}</td>
-                <td><img src="${product.image}" alt="Product Image"></td>
+                <td>${data.productName}</td>
+                <td>${data.productPrice}</td>
+                <td>${data.productType}</td>
+                <td><img src="${data.productLink}" alt="Product Image"></td>
                 <td><button class="deleteButton">Delete</button></td>
             </tr>`
     return newHTML
 }
 
-// A function that adds a new HTML to the task container
+// A function that adds a new HTML to the 
 function renderHTML(newHTML) {
     const productsTable = document.getElementById(`productsTable`)
     productsTable.innerHTML += newHTML
@@ -35,33 +35,31 @@ function renderHTML(newHTML) {
 // A function for clearing the form after we add a new task
 function clearForm() {
     // Clears it
-    const productForm = document.getElementById(`formContainer`)
+    const productForm = document.getElementById(`productForm`)
     productForm.reset()
 
     //Set it on the textarea 
     const productNameInput = document.getElementById(`productName`)
-    descriptionInput.focus()
+    productNameInput.focus()
 }
 
 // A function to save a task i gets(taskObject) to the local storage
-function saveProductToLocalStorage(taskObject) {
+function saveProductToLocalStorage(productObject) {
     //Get JSON from local storage
-    const currentTasksInStorageJSON = localStorage.getItem(`tasks`)
+    const currentProductsInStorageJSON = localStorage.getItem(`products`)
 
     //Converts JSON to JavaScript object
-    const currentTasksInStorage = JSON.parse(currentTasksInStorageJSON)
+    const currentProductsInStorage = JSON.parse(currentProductsInStorageJSON)
 
-    //The object we got is an array, push another item to the array
-    currentTasksInStorage.push(taskObject)
+    currentProductsInStorage.push(productObject)
 
-    //Converts it back to JSON and saves it back to the local storage
-    localStorage.setItem(`tasks`, JSON.stringify(currentTasksInStorage))
+    localStorage.setItem(`products`, JSON.stringify(currentProductsInStorage))
 }
 
-// A function for the first time we run the program that creates an empty array for us to add tasks into
+
 function initStorage() {
-    const currentProductJSON = localStorage.getItem(`products`)
-    if (!currentProductJSON) {
+    const currentProductsJSON = localStorage.getItem(`products`)
+    if (!currentProductsJSON) {
         localStorage.setItem(`products`, JSON.stringify([]))
     }
 }
@@ -70,7 +68,11 @@ function initStorage() {
 function loadProductFromLocalStorage() {
     const ProductJSON = localStorage.getItem(`products`)
     if (ProductJSON) {
-
+        const products = JSON.parse(ProductJSON)
+        for (const product of products) {
+            const newHTML = generateHTML(product)
+            renderHTML(newHTML)
+        }
     }
 }
 
@@ -82,14 +84,15 @@ function deleteProduct() {
 
 // A function that adds a new task and validates if the time&date are currect
 function addProduct(event) {
+    alert(`works`)
     event.preventDefault()
     const data = collectData()
-    const newHTML = generateHTML(data)
-    renderHTML(newHTML)
-    saveProductToLocalStorage(data)
-    clearForm()
-
+    console.log(data)
+    // const newHTML = generateHTML(data)
+    // renderHTML(newHTML)
+    // saveProductToLocalStorage(data)
+    // clearForm()
 }
 
-initStorage()
-loadProductFromLocalStorage()
+// initStorage()
+// loadProductFromLocalStorage()
