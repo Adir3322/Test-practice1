@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'christmas';
+    src: url('/assets/fonts/christmas.otf');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    text-align: center;
+    background-image: url('/assets/images/tile.jpg');
+    justify-content: center;
+
+}
+
+#grid {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 2fr;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#formContainer {
+    width: 100%;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: center;
+}
+
+#cartTable {
+    /* Makes sure it takes all of the grids space  */
+    height: 100%;
+    width: 100%;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#cartTable td {
+    text-align: center;
+    /* Center horizontally */
+    vertical-align: middle;
+    /* Center vertically */
+}
+
+img {
+    height: 100px;
+}
