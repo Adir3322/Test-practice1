@@ -30,8 +30,8 @@
                 <br>
                 <input type="number" id="productPrice" required placeholder="Enter product price">
                 <br>
-                <label for="products">Choose product type:</label>
-                <select id="products" required>
+                <label for="productType">Choose product type:</label>
+                <select id="productType" required>
                     <option value="drinks">Drinks</option>
                     <option value="meat">Meat</option>
                     <option value="dairy">Dairy</option>
@@ -39,7 +39,7 @@
                     <option value="basic">Basic</option>
                 </select>
                 <br>
-                <input type="text" id="productImage" placeholder="Product image link">
+                <input type="text" id="productLink" placeholder="Product image link">
                 <br>
 
                 <button type="submit" id="addProduct" onclick="addProduct(event)">Add product</button>
@@ -57,7 +57,8 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="productsTable">
+
                         <!-- Products will be added here dynamically -->
                     </tbody>
                 </table>
