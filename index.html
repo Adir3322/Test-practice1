@@ -23,21 +23,27 @@
 
 <body>
     <div id="grid">
-        <header>My TodoList</header>
+        <header>Shopping cart</header>
         <div id="formContainer">
             <form onsubmit="addTask(event)" id="tasksForm">
-                <input type="text" id="productName">
-                <input type="number" id="productPrice">
-                <select id="products">
+                <input type="text" id="productName" required placeholder="Enter product name">
+                <br>
+                <input type="number" id="productPrice" required placeholder="Enter product price">
+                <br>
+                <label for="products">Choose product type:</label>
+                <select id="products" required>
                     <option value="drinks">Drinks</option>
                     <option value="meat">Meat</option>
                     <option value="dairy">Dairy</option>
                     <option value="snacks">Snacks</option>
                     <option value="basic">Basic</option>
                 </select>
-                <input type="image">
+                <br>
+                <input type="text" id="productImage" placeholder="Product image link">
+                <br>
 
-                <button type="submit" id="addProduct">Add product</button>
+                <button type="submit" id="addProduct" onclick="addProduct(event)">Add product</button>
+                <br><br>
 
 
                 <h2>Shopping Cart</h2>
@@ -47,6 +53,8 @@
                             <th>Product Name</th>
                             <th>Product Price</th>
                             <th>Category</th>
+                            <th>Image</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
