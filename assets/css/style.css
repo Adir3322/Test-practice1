@@ -49,6 +49,13 @@ h2 {
     padding: 0;
 }
 
+#cartTable td {
+    text-align: center;
+    /* Center horizontally */
+    vertical-align: middle;
+    /* Center vertically */
+}
+
 img {
     height: 100px;
 }
